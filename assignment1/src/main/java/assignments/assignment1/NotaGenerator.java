@@ -111,12 +111,13 @@ public class NotaGenerator {
                 System.out.println("Masukkan tanggal terimaL ");
                 String tanggalTerima = sc.nextLine();
                 boolean paketSudahBenar = false;
-                String paket;
+                String paket, paketLowered;
                 // Iterasi nama paket sampai sesuai dengan yang diinginkan
                 do {
                     System.out.println("Masukkan paket laundry: ");
                     paket = sc.nextLine();
-                    if (paket.equals("express") || paket.equals("fast") || paket.equals("reguler")){
+                    paketLowered = paket.toLowerCase();
+                    if (paketLowered.equals("express") || paketLowered.equals("fast") || paketLowered.equals("reguler")){
                         paketSudahBenar = true;
                     } else if (paket.equals("?")){
                         showPaket();
@@ -148,6 +149,7 @@ public class NotaGenerator {
                 System.out.println("Perintah tidak diketahui, silahkan periksa kembali.");
             }
         } while (pilihan.equals("0") == false);
+        System.out.println("Terima kasih telah menggunakan NotaGenerator!");
     }
 
     /**
@@ -216,14 +218,15 @@ public class NotaGenerator {
             System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
             berat = 2;
         }
-        // Assign nilai untuk jenis paket yang sesuai
-        if (paket.equals("express")){
+        // Assign nilai untuk jenis paket yang sesuai (input tidak sensitif)
+        String paketLowered = paket.toLowerCase();
+        if (paketLowered.equals("express")){
             hargaPerKilo = 12000;
             lamaProses = 1;
-        } else if (paket.equals("fast")){
+        } else if (paketLowered.equals("fast")){
             hargaPerKilo = 10000;
             lamaProses = 2;
-        } else if (paket.equals("reguler")){
+        } else if (paketLowered.equals("reguler")){
             hargaPerKilo = 7000;
             lamaProses = 3;
         }
