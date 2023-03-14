@@ -117,6 +117,38 @@ public class NotaGenerator {
         return nota;
     }
 
+    // method untuk mencetak nota versi 2
+    public static String generateNotaVersi2(String id, String paket, int berat, String tanggalTerima, int bonusCounter){
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        int year = Integer.parseInt(tanggalTerima.substring(6));
+        int month = Integer.parseInt(tanggalTerima.substring(3, 5)) - 1;
+        int date = Integer.parseInt(tanggalTerima.substring(0, 2));
+        cal.set(year, month, date);
+
+        // conditional jika bonusCounter lebih dari 0 dan kelipatan 3 akan mendapatkan diskon 50%
+        String nota = "";
+        // kondisi juka bonusCounter lebih dari 0 dan kelipatan 3 maka akan mendapatkan diskon 50%
+        if (bonusCounter > 0 && bonusCounter % 3 == 0) {
+            nota += "ID    : " + id + "\n";
+            nota += "Paket : " + paket + "\n";
+            nota += "Harga :\n";
+            nota += String.format("%d kg x %d = %d = %d (Discount member 50%!!!)\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)), (berat * getHargaPaket(paket))/2);
+            nota += "Tanggal Terima  : " + tanggalTerima + "\n";
+            cal.add(Calendar.DATE, getHariPaket(paket));
+            nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
+        } else {
+            nota += "ID    : " + id + "\n";
+            nota += "Paket : " + paket + "\n";
+            nota += "Harga :\n";
+            nota += String.format("%d kg x %d = %d\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)));
+            nota += "Tanggal Terima  : " + tanggalTerima + "\n";
+            cal.add(Calendar.DATE, getHariPaket(paket));
+            nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
+        }
+        return nota;
+    }
+
     private static long getHargaPaket(String paket) {
         paket = paket.toLowerCase();
         if (paket.equals("express")) return 12000;
@@ -133,7 +165,8 @@ public class NotaGenerator {
         return -1;
     }
 
-    private static boolean isNumeric(String str) {
+    // method untuk mengecek apakah string berisi angka saja
+    public static boolean isNumeric(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c))
                 return false;
