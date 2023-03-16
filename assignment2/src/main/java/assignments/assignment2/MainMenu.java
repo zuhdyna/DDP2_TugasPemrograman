@@ -119,10 +119,12 @@ public class MainMenu {
         }
         // masukkan ke list nota
         notaList.add(new Nota(member, paketLaundry, beratCucian, fmt.format(cal.getTime()), notaCounter));
-        // add 1 ke bonusCounter member
-        member.setBonusCounter(member.getBonusCounter() + 1);
         // generate nota
         String notaHasil = NotaGenerator.generateNotaVersi2(idMember, paketLaundry, beratCucian, fmt.format(cal.getTime()), member.getBonusCounter());
+        // handle jika member sudah mendapatkan bonus maka akan reset menjadi 0
+        if (member.getBonusCounter() == 3){
+            member.setBonusCounter(0);
+        }
         System.out.println("Berhasil menambahkan nota!");
         System.out.printf("[ID Nota = %d]\n", notaList.get(notaList.size() - 1).getIdNota());
         System.out.println(notaHasil);

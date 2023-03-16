@@ -129,7 +129,7 @@ public class NotaGenerator {
         // conditional jika bonusCounter lebih dari 0 dan kelipatan 3 akan mendapatkan diskon 50%
         String nota = "";
         // kondisi juka bonusCounter lebih dari 0 dan kelipatan 3 maka akan mendapatkan diskon 50%
-        if (bonusCounter > 0 && bonusCounter % 3 == 0) {
+        if (bonusCounter == 3) {
             nota += "ID    : " + id + "\n";
             nota += "Paket : " + paket + "\n";
             nota += "Harga :\n";
