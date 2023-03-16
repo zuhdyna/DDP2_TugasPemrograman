@@ -133,7 +133,7 @@ public class NotaGenerator {
             nota += "ID    : " + id + "\n";
             nota += "Paket : " + paket + "\n";
             nota += "Harga :\n";
-            nota += String.format("%d kg x %d = %d = %d (Discount member 50%!!!)\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)), (berat * getHargaPaket(paket))/2);
+            nota += String.format("%d kg x %d = %d = %d (Discount member 50%%!!!)\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)), (berat * getHargaPaket(paket))/2);
             nota += "Tanggal Terima  : " + tanggalTerima + "\n";
             cal.add(Calendar.DATE, getHariPaket(paket));
             nota += "Tanggal Selesai : " + formatter.format(cal.getTime());

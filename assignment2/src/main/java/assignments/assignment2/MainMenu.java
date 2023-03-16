@@ -48,12 +48,12 @@ public class MainMenu {
         String nomorHP = input.nextLine();
         // handle jika nomor hp tidak berupa digit
         while (isNumeric(nomorHP) == false || nomorHP.equals("")){
-            System.out.println("Field nomor hp hanya menerima digit");
+            System.out.println("Field nomor hp hanya menerima digit.");
             nomorHP = input.nextLine();
         }
-        // handle jika nama dan nomor hp sudah ada
+        // handle jika id yang akan dibuat ternyata sudah ada
         for (int i = 0; i < memberList.size(); i++){
-            if (memberList.get(i).getNoHp().equals(nomorHP) && memberList.get(i).getNama().equals(nama)){
+            if (memberList.get(i).getId().equals(generateId(nama, nomorHP))){
                 System.out.printf("Member dengan nama %s dan nomor hp %s sudah ada!\n", nama, nomorHP);
                 return;
             }
@@ -107,11 +107,16 @@ public class MainMenu {
         String beratCucianStr = input.nextLine();
         // handle jika berat cucian tidak berupa digit
         while (isNumeric(beratCucianStr) == false || beratCucianStr.equals("")){
-            System.out.println("Berat cucian hanya menerima digit");
+            System.out.println("Berat cucian hanya menerima digit.");
             beratCucianStr = input.nextLine();
         }
         // ubah berat cucian dari string ke integer
         int beratCucian = Integer.parseInt(beratCucianStr);
+        // jika kurang dari 2 kg
+        if (beratCucian < 2) {
+            System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
+            beratCucian = 2;
+        }
         // masukkan ke list nota
         notaList.add(new Nota(member, paketLaundry, beratCucian, fmt.format(cal.getTime()), notaCounter));
         // add 1 ke bonusCounter member
@@ -160,8 +165,8 @@ public class MainMenu {
         // input id nota
         System.out.println("Masukkan ID nota yang akan diambil:");
         String idNotaStr = input.nextLine();
-        // handle jika id nota tidak berupa digit
-        while (isNumeric(idNotaStr) == false || idNotaStr.equals("")){
+        // handle jika id nota tidak berupa digit atau kurang dari nol
+        while (isNumeric(idNotaStr) == false || idNotaStr.equals("") || (Integer.parseInt(idNotaStr) < 0)){
             System.out.println("ID nota berbentuk angka!");
             idNotaStr = input.nextLine();
         }
@@ -172,11 +177,11 @@ public class MainMenu {
             if (notaList.get(i).getIdNota() == idNota){
                 // handle jika nota belum siap diambil
                 if (notaList.get(i).getIsReady() == false){
-                    System.out.printf("Nota dengan ID %d gagal diambil!\n", idNota);
+                    System.out.printf("Nota dengan ID %s gagal diambil!\n", idNotaStr);
                     return;
                 }
                 // handle jika nota bisa diambil
-                System.out.printf("Nota dengan ID %d berhasil diambil!\n", idNota);
+                System.out.printf("Nota dengan ID %s berhasil diambil!\n", idNotaStr);
                 // menghilangkan nota
                 notaList.remove(i);
                 return;
