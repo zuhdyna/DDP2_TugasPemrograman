@@ -15,6 +15,14 @@ public class Nota {
 
     public Nota(Member member, int berat, String paket, String tanggal) {
         //TODO
+        // this.id = totalNota;
+        this.paket = paket;
+        this.member = member;
+        this.berat = berat;
+        this.tanggalMasuk = tanggal;
+        // this.sisaHariPengerjaan = 3;
+        this.isDone = false;
+        // this.services = new LaundryService[0];
     }
 
     public void addService(LaundryService service){

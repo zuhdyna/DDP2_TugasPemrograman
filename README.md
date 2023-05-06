@@ -13,7 +13,6 @@ Semester Genap 2022/2023
 1. Soal Tugas Pemrograman
    * [Tugas Pemrograman 1][tp1]
    * [Tugas Pemrograman 2][tp2]
-   * [Tugas Pemrograman 3][tp3]
 2. [Latihan Tugas Pemrograman](#latihan-tugas-pemrograman)
 3. [Memulai](#memulai)
 4. [Mengerjakan Tugas Pemrograman](#mengerjakan-tugas-pemrograman)
@@ -30,7 +29,7 @@ Sebelum memulai mengerjakan tugas pemrograman, harap mengerjakan [Latihan Tugas 
 
 1. **Duplikat** repositori ini ke akun GitHub kamu. Cara untuk menduplikat repositori Tugas Pemrograman, hampir sama dengan cara menduplikat repositori Latihan Tugas Pemrograman yang dapat dilihat [disini](https://docs.google.com/document/d/1LFRe4iRxjLmcOZrZ4q1qQPt6m-C7PIVTgpRYrKxDJkM/edit#heading=h.fy60kcxym2pi)
 
-2. Jika visibilitas repositori masih belum private, ubah visibilitas repositori hasil duplikat tersebut menjadi ***private*** melalui halaman *Settings* > *General* > *Danger Zone* > *Change repository visibility* > *Change Visibility* > *Change to private*.
+2. Jika visibilitas repositori masih belum private, ubah visibilitas repositori hasil duplikat tersebut menjadi ***private*** melalui halaman *Settings* > *General* > *Danger Zone* > *Change repository visibility* > *Change Visibility* > *Change to public*.
 
 3. Tambahkan akun GitHub `asdos kamu` dan `@dekdepe` sebagai *collaborator* di repositori kamu melalui *Settings* > *Collaborators* > *Add People*.
 
@@ -101,7 +100,6 @@ yang telah dijelaskan dalam perkuliahan.
 [latihan-tp]: https://github.com/dekdepe/exercise-assignments
 [tp1]: assignment1/README.md
 [tp2]: assignment2/README.md
-[tp3]: assignment3/README.md
 [repositori-pusat]: https://github.com/dekdepe/assignments-22-23
 
 [repositori-2018]: https://gitlab.com/DDP2-CSUI/assignment
