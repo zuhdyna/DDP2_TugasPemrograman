@@ -41,6 +41,7 @@ public class LoginManager {
      */
     public Member register(String nama, String noHp, String password) {
         // TODO
+        
         return null;
     }
 }
