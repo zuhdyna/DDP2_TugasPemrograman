@@ -51,7 +51,7 @@ public class NotaGenerator {
     /**
      * Method untuk menampilkan paket.
      */
-    private static void showPaket() {
+    public static void showPaket() {
         System.out.println("+-------------Paket-------------+");
         System.out.println("| Express | 1 Hari | 12000 / Kg |");
         System.out.println("| Fast    | 2 Hari | 10000 / Kg |");
@@ -117,8 +117,8 @@ public class NotaGenerator {
         return nota;
     }
 
-    // method untuk mencetak nota versi 2
-    public static String generateNotaVersi2(String id, String paket, int berat, String tanggalTerima, int bonusCounter){
+    // untuk TP3
+    public static String generateNotaVersi2(String id, String paket, int berat, String tanggalTerima, long totalHarga){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
         int year = Integer.parseInt(tanggalTerima.substring(6));
@@ -126,26 +126,15 @@ public class NotaGenerator {
         int date = Integer.parseInt(tanggalTerima.substring(0, 2));
         cal.set(year, month, date);
 
-        // conditional jika bonusCounter lebih dari 0 dan kelipatan 3 akan mendapatkan diskon 50%
         String nota = "";
-        // kondisi juka bonusCounter lebih dari 0 dan kelipatan 3 maka akan mendapatkan diskon 50%
-        if (bonusCounter == 3) {
-            nota += "ID    : " + id + "\n";
-            nota += "Paket : " + paket + "\n";
-            nota += "Harga :\n";
-            nota += String.format("%d kg x %d = %d = %d (Discount member 50%%!!!)\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)), (berat * getHargaPaket(paket))/2);
-            nota += "Tanggal Terima  : " + tanggalTerima + "\n";
-            cal.add(Calendar.DATE, getHariPaket(paket));
-            nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
-        } else {
-            nota += "ID    : " + id + "\n";
-            nota += "Paket : " + paket + "\n";
-            nota += "Harga :\n";
-            nota += String.format("%d kg x %d = %d\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)));
-            nota += "Tanggal Terima  : " + tanggalTerima + "\n";
-            cal.add(Calendar.DATE, getHariPaket(paket));
-            nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
-        }
+        nota += "ID    : " + id + "\n";
+        nota += "Paket : " + paket + "\n";
+        nota += "Harga :\n";
+        nota += String.format("%d kg x %d = %d\n", berat, getHargaPaket(paket), totalHarga);
+        nota += "Tanggal Terima  : " + tanggalTerima + "\n";
+        cal.add(Calendar.DATE, getHariPaket(paket));
+        nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
+
         return nota;
     }
 
@@ -165,7 +154,6 @@ public class NotaGenerator {
         return -1;
     }
 
-    // method untuk mengecek apakah string berisi angka saja
     public static boolean isNumeric(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c))

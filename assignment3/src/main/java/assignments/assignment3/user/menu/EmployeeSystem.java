@@ -4,6 +4,9 @@ import assignments.assignment3.nota.Nota;
 import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.Member;
 
+// import Arrays
+import java.util.Arrays;
+
 import static assignments.assignment3.nota.NotaManager.notaList;
 
 public class EmployeeSystem extends SystemCLI {
@@ -30,6 +33,32 @@ public class EmployeeSystem extends SystemCLI {
     protected boolean processChoice(int choice) {
         boolean logout = false;
         // TODO:
+        // membuat switch case untuk memproses pilihan
+        switch (choice){
+            // it's nyuci time
+            case 1:
+                System.out.println("Stand back! "+ loginMember.getNama() +" beginning to nyuci!");
+                // mencetak semua nota yang ada
+                for (int i = 0; i < notaList.length; i++) {
+                    System.out.println(notaList[i].kerjakan());
+                }
+                break;
+            // Display list nota
+            case 2:
+                // mencetak semua status nota
+                for (int i = 0; i < notaList.length; i++) {
+                    System.out.println(notaList[i].getNotaStatus());
+                }
+                break;
+            // logout
+            case 3:
+                // logout
+                logout = true;
+                break;
+            default:
+                // jika pilihan tidak ada, tampilkan pesan error
+                System.out.println("Pilihan tidak tersedia");
+        }
         return logout;
     }
 

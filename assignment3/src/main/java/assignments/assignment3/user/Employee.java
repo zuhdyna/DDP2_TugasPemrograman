@@ -15,6 +15,15 @@ public class Employee extends Member {
      */
     private static String generateId(String nama) {
         // TODO
-        return "";
+        // mengambil nama depan dari nama lengkap
+        String[] namaSplitted = nama.split(" ");
+        String namaDepan = namaSplitted[0];
+        // mengambil jumlah employee
+        int jumlahEmployee = employeeCount;
+        // membuat id
+        String id = namaDepan.toUpperCase() + "-" + jumlahEmployee;
+        // menambah jumlah employee
+        employeeCount++;
+        return id;
     }
 }

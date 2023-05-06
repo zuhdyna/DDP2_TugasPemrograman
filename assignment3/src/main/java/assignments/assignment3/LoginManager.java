@@ -41,7 +41,16 @@ public class LoginManager {
      */
     public Member register(String nama, String noHp, String password) {
         // TODO
-        
+        // membuat id dari informasi yang diberikan
+        String id = NotaGenerator.generateId(nama, noHp);
+        // cek apakah id sudah ada di sistem
+        if(!memberSystem.isMemberExist(id)){
+            // jika belum ada, buat member baru
+            Member newMember = new Member(nama, id, password);
+            // tambahkan member baru ke sistem
+            memberSystem.addMember(newMember);
+            return newMember;
+        }
         return null;
     }
 }
