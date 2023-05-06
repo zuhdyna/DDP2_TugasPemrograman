@@ -3,58 +3,61 @@ package assignments.assignment2;
 import assignments.assignment1.NotaGenerator;
 
 public class Nota {
-
-    private int idNota;
+    // TODO: tambahkan attributes yang diperlukan untuk class ini
+    // atribut class Nota
+    private String paket, tanggalMasuk;
+    private int idNota, berat, sissaHariPengerjaan;
     private Member member;
-    private String paket;
-    private int berat;
-    private String tanggalTerima;
-    private int sisaHariPengerjaan;
-    static public int totalNota;
-
-    private boolean isReady = false;
-
-    public Nota(Member member, String paket, int berat, String tanggalTerima) {
-        this.idNota = totalNota;
+    private boolean isReady;
+    // constructor class Nota
+    public Nota(Member member, String paket, int berat, String tanggalMasuk, int notaCounter) {
+        // TODO: buat constructor untuk class ini
         this.member = member;
         this.paket = paket;
         this.berat = berat;
-        this.tanggalTerima = tanggalTerima;
-        this.sisaHariPengerjaan = NotaGenerator.toHariPaket(paket);
-        totalNota++;
-        member.addBonusCounter(1);
+        this.tanggalMasuk = tanggalMasuk;
+        this.idNota = notaCounter;
+        // handle lama pengerjaan
+        String paketLowered = paket.toLowerCase();
+        if (paketLowered.equals("reguler")){
+            this.sissaHariPengerjaan = 3;
+        } else if (paketLowered.equals("fast")){
+            this.sissaHariPengerjaan = 2;
+        } else if (paketLowered.equals("express")){
+            this.sissaHariPengerjaan = 1;
+        }
+        this.isReady = false;
+        // increment notaCounter
     }
-    public int getId() {
+
+    // TODO: tambahkan methods yang diperlukan untuk class ini
+    // method-method setter
+    public void setSissaHariPengerjaan(int sissaHariPengerjaan) {
+        this.sissaHariPengerjaan = sissaHariPengerjaan;
+    }
+    public void setReady(boolean ready) {
+        isReady = ready;
+    }
+    // method-method getter
+    public String getPaket() {
+        return paket;
+    }
+    public String getTanggalMasuk() {
+        return tanggalMasuk;
+    }
+    public int getIdNota() {
         return idNota;
     }
-
-    public boolean isReady() {
+    public int getBerat() {
+        return berat;
+    }
+    public int getSissaHariPengerjaan() {
+        return sissaHariPengerjaan;
+    }
+    public Member getMember() {
+        return member;
+    }
+    public boolean getIsReady() {
         return isReady;
-    }
-
-    public boolean toNextDay(){
-        sisaHariPengerjaan--;
-        if(sisaHariPengerjaan <= 0){
-            isReady = true;
-        }
-        return isReady;
-    }
-
-    public String getStatus() {
-        String message = isReady ? "Sudah dapat diambil!" : "Belum bisa diambil :(";
-        return "Status          : " + message;
-    }
-
-    @Override
-    public String toString() {
-        return String.format("[ID Nota = %d]%n", idNota) + NotaGenerator.generateNota(member.getId(), paket, berat, tanggalTerima, member.isDiscount()) + "\n"
-                + getStatus();
-    }
-    public boolean equals(int idNota) {
-        return idNota == this.idNota;
-    }
-
-    public boolean equals(Nota nota) {
-        return equals(nota.getId());
     }
 }
