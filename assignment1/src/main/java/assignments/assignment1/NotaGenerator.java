@@ -122,6 +122,26 @@ public class NotaGenerator {
         return id;
     }
 
+
+    public static String generateNota(String id, String paket, int berat, String tanggalTerima) {
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        Calendar cal = Calendar.getInstance();
+        int year = Integer.parseInt(tanggalTerima.substring(6));
+        int month = Integer.parseInt(tanggalTerima.substring(3, 5)) - 1;
+        int date = Integer.parseInt(tanggalTerima.substring(0, 2));
+        cal.set(year, month, date);
+
+        String nota = "";
+        nota += "ID    : " + id + "\n";
+        nota += "Paket : " + paket + "\n";
+        nota += "Harga :\n";
+        nota += String.format("%d kg x %d = %d", berat, toHargaPaket(paket), (berat * toHargaPaket(paket)));
+        nota += "\nTanggal Terima  : " + tanggalTerima + "\n";
+        cal.add(Calendar.DATE, toHariPaket(paket));
+        nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
+
+        return nota;
+    }
     /**
      *
      * Method untuk membuat Nota.

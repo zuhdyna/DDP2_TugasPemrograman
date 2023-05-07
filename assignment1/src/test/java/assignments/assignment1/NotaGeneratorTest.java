@@ -14,7 +14,7 @@ public class NotaGeneratorTest {
                 "tanggal terima  : 01/02/2023\n" +
                 "tanggal selesai : 04/02/2023";
         assertEquals(solution, NotaGenerator.generateNota("BOCI-08203712389-79",
-                "reguler", 20, "01/02/2023", member.isDiscount()));
+                "reguler", 20, "01/02/2023"));
     }
 
     @Test
