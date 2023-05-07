@@ -36,7 +36,7 @@ public class MemberSystem extends SystemCLI {
                         continue;
                     }
                     // Jika harga paket kurang dari 0, maka paket tidak ada di daftar
-                    if (NotaGenerator.getHargaPaket(paket.toLowerCase()) < 0) {
+                    if (NotaGenerator.toHargaPaket(paket.toLowerCase()) < 0) {
                         System.out.printf("Paket %s tidak diketahui\n", paket);
                         System.out.println("[ketik ? untuk mencari tahu jenis paket]");
                     } else {
