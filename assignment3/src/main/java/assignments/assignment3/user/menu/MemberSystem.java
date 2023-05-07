@@ -30,6 +30,7 @@ public class MemberSystem extends SystemCLI {
                 String paket = "";
                 while (true) {
                     System.out.println("Masukkan paket laundry:");
+                    showPaket();
                     paket = in.nextLine();
                     if (paket.equals("?")) {
                         showPaket();
@@ -69,11 +70,11 @@ public class MemberSystem extends SystemCLI {
                 String tanggalMasuk = NotaManager.fmt.format(NotaManager.cal.getTime());
                 // membuat nota baru
                 Nota notaMember = new Nota(loginMember, berat, paket, tanggalMasuk);
-                // tambah services
-                if(!setrika.equals("x")){
+                // tambah services, insensitive
+                if(!setrika.toLowerCase().equals("x")){
                     notaMember.addService(new SetrikaService());
                 }
-                if(!antar.equals("x")){
+                if(!antar.toLowerCase().equals("x")){
                     notaMember.addService(new AntarService());;
                 }
                 // menambahkan nota ke notaManager
