@@ -118,7 +118,7 @@ public class NotaGenerator {
     }
 
     // untuk TP3
-    public static String generateNotaVersi2(String id, String paket, int berat, String tanggalTerima, long totalHarga){
+    public static String generateNotaVersiTP3(String id, String paket, int berat, String tanggalTerima){
         SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
         Calendar cal = Calendar.getInstance();
         int year = Integer.parseInt(tanggalTerima.substring(6));
@@ -130,15 +130,15 @@ public class NotaGenerator {
         nota += "ID    : " + id + "\n";
         nota += "Paket : " + paket + "\n";
         nota += "Harga :\n";
-        nota += String.format("%d kg x %d = %d\n", berat, getHargaPaket(paket), totalHarga);
-        nota += "Tanggal Terima  : " + tanggalTerima + "\n";
+        nota += String.format("%d kg x %d = %d\n", berat, getHargaPaket(paket), (berat * getHargaPaket(paket)));
+        nota += "tanggal terima  : " + tanggalTerima + "\n";
         cal.add(Calendar.DATE, getHariPaket(paket));
-        nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
+        nota += "tanggal selesai : " + formatter.format(cal.getTime());
 
         return nota;
     }
 
-    private static long getHargaPaket(String paket) {
+    public static long getHargaPaket(String paket) {
         paket = paket.toLowerCase();
         if (paket.equals("express")) return 12000;
         if (paket.equals("fast")) return 10000;

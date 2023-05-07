@@ -42,6 +42,8 @@ public class Nota {
         }
         // assign services
         this.services = new LaundryService[0];
+        // tambahkan cuciService
+        this.addService(new assignments.assignment3.nota.service.CuciService());
     }
 
     public void addService(LaundryService service){
@@ -99,6 +101,10 @@ public class Nota {
         if (this.sisaHariPengerjaan < 0){
             totalHarga += 2000*(this.sisaHariPengerjaan);
         }
+        // harga tidak boleh minus
+        if (totalHarga < 0){
+            totalHarga = 0;
+        }
         return totalHarga;
     }
 
@@ -118,7 +124,7 @@ public class Nota {
         // TODO
         // string semua data nota
         String outputNota = String.format("[ID Nota = %d]\n", this.id);
-        outputNota += NotaGenerator.generateNota(this.member.getId(), this.getPaket(), this.berat, this.tanggalMasuk);
+        outputNota += NotaGenerator.generateNotaVersiTP3(this.member.getId(), this.getPaket(), this.berat, this.tanggalMasuk);
         // tambahkan services
         outputNota += "\n--- SERVICE LIST ---";
         for (int i = 0; i < services.length; i++) {

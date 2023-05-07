@@ -1,6 +1,7 @@
 package assignments.assignment3.user.menu;
 
 import assignments.assignment3.nota.Nota;
+import assignments.assignment3.nota.NotaManager;
 import assignments.assignment3.user.Employee;
 import assignments.assignment3.user.Member;
 
@@ -40,14 +41,14 @@ public class EmployeeSystem extends SystemCLI {
                 System.out.println("Stand back! "+ loginMember.getNama() +" beginning to nyuci!");
                 // mencetak semua nota yang ada
                 for (int i = 0; i < notaList.length; i++) {
-                    System.out.println(notaList[i].kerjakan());
+                    System.out.println(NotaManager.notaList[i].kerjakan());
                 }
                 break;
             // Display list nota
             case 2:
                 // mencetak semua status nota
                 for (int i = 0; i < notaList.length; i++) {
-                    System.out.println(notaList[i].getNotaStatus());
+                    System.out.println(NotaManager.notaList[i].getNotaStatus());
                 }
                 break;
             // logout

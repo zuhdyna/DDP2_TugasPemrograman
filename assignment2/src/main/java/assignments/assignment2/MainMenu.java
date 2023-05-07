@@ -207,7 +207,7 @@ public class MainMenu {
         return null;
     }
 
-    private static boolean isNumeric(String str) {
+    public static boolean isNumeric(String str) {
         for (char c : str.toCharArray()) {
             if (!Character.isDigit(c))
                 return false;

@@ -2,9 +2,6 @@ package assignments.assignment3.user.menu;
 import java.lang.reflect.Array;
 import java.util.Arrays;
 import java.util.Scanner;
-// import tanggal
-import java.text.SimpleDateFormat;
-import java.util.Calendar;
 // import nota
 import assignments.assignment3.nota.Nota;
 import assignments.assignment3.nota.NotaManager;
@@ -29,22 +26,39 @@ public class MemberSystem extends SystemCLI {
         switch (choice){
             // saya ingin laundry
             case 1:
-                // membuat tanggal
-                SimpleDateFormat fmt = new SimpleDateFormat("dd/MM/yyyy");
-                Calendar cal = Calendar.getInstance();
-                // menampilkan menu paket dan meminta input paket
-                System.out.println("Masukkan paket laundry: ");
-                NotaGenerator.showPaket();
-                String paket = in.nextLine();
-                // input berat
+                // menampilkan menu paket dan meminta input paket (Menggunakan solusi TP1)
+                String paket = "";
+                while (true) {
+                    System.out.println("Masukkan paket laundry:");
+                    paket = in.nextLine();
+                    if (paket.equals("?")) {
+                        NotaGenerator.showPaket();
+                        continue;
+                    }
+                    // Jika harga paket kurang dari 0, maka paket tidak ada di daftar
+                    if (NotaGenerator.getHargaPaket(paket.toLowerCase()) < 0) {
+                        System.out.printf("Paket %s tidak diketahui\n", paket);
+                        System.out.println("[ketik ? untuk mencari tahu jenis paket]");
+                    } else {
+                        break;
+                    }
+                }
+
+                // input berat (menggunakan solusi TP1)
                 System.out.println("Masukkan berat cucian anda [Kg]: ");
-                int berat = in.nextInt();
-                in.nextLine();
+                String beratString = in.nextLine();
+                // cek apakah berat sebuah angka dengan isNumeric dan berat lebih dari 0
+                while(!NotaGenerator.isNumeric(beratString) || Integer.parseInt(beratString) < 1){
+                    System.out.println("Harap masukkan berat cucian Anda dalam bentuk bilangan positif.");
+                    beratString = in.nextLine();
+                }
+                int berat = Integer.parseInt(beratString);
                 // kondisi jika berat kurang dari 2
                 if(berat < 2){
                     System.out.println("Cucian kurang dari 2 kg, maka cucian akan dianggap sebagai 2 kg");
                     berat = 2;
                 }
+
                 // apakah setrika
                 System.out.print("Apakah kamu ingin cucianmu disetrika oleh staff professional kami?\n Hanya tambah 1000 / kg :0\n[Ketik x untuk tidak mau]: ");
                 String setrika = in.nextLine();
@@ -52,11 +66,10 @@ public class MemberSystem extends SystemCLI {
                 System.out.print("Mau diantar oleh kurir kami? Dijamin aman dan cepat sampai tujuan!\n Cuma 2000 / 4kg, kemudian 500 / kg\n[Ketik x untuk tidak mau]: ");
                 String antar = in.nextLine();
                 // membuat tanggal
-                String tanggalMasuk = fmt.format(cal.getTime());
+                String tanggalMasuk = NotaManager.fmt.format(NotaManager.cal.getTime());
                 // membuat nota baru
                 Nota notaMember = new Nota(loginMember, berat, paket, tanggalMasuk);
                 // tambah services
-                notaMember.addService(new CuciService());
                 if(!setrika.equals("x")){
                     notaMember.addService(new SetrikaService());
                 }
