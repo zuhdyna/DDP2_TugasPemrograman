@@ -136,9 +136,9 @@ public class NotaGenerator {
         nota += "Paket : " + paket + "\n";
         nota += "Harga :\n";
         nota += String.format("%d kg x %d = %d", berat, toHargaPaket(paket), (berat * toHargaPaket(paket)));
-        nota += "\nTanggal Terima  : " + tanggalTerima + "\n";
+        nota += "\ntanggal terima  : " + tanggalTerima + "\n";
         cal.add(Calendar.DATE, toHariPaket(paket));
-        nota += "Tanggal Selesai : " + formatter.format(cal.getTime());
+        nota += "tanggal selesai : " + formatter.format(cal.getTime());
 
         return nota;
     }
