@@ -18,6 +18,8 @@ public class NotaManager {
         for (int i = 0; i < notaList.length; i++) {
             notaList[i].toNextDay();
         }
+        // tambahkan 1 hari pada cal system (milik nota manager)
+        cal.add(Calendar.DATE, 1);
     }
 
     /**
