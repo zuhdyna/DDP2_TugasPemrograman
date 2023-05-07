@@ -32,7 +32,7 @@ public class MemberSystem extends SystemCLI {
                     System.out.println("Masukkan paket laundry:");
                     paket = in.nextLine();
                     if (paket.equals("?")) {
-                        NotaGenerator.showPaket();
+                        showPaket();
                         continue;
                     }
                     // Jika harga paket kurang dari 0, maka paket tidak ada di daftar
@@ -133,5 +133,15 @@ public class MemberSystem extends SystemCLI {
         memberCopy[memberList.length] = member;
         // mengganti array lama dengan array baru
         memberList = memberCopy;
+    }
+    /**
+     * Method untuk menampilkan paket.
+     */
+    public static void showPaket() {
+        System.out.println("+-------------Paket-------------+");
+        System.out.println("| Express | 1 Hari | 12000 / Kg |");
+        System.out.println("| Fast    | 2 Hari | 10000 / Kg |");
+        System.out.println("| Reguler | 3 Hari |  7000 / Kg |");
+        System.out.println("+-------------------------------+");
     }
 }
