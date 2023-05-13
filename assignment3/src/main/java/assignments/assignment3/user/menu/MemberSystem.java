@@ -26,7 +26,7 @@ public class MemberSystem extends SystemCLI {
 
     private void showDetailNota() {
         for (Nota nota:
-             loginMember.getNotaList()) {
+            loginMember.getNotaList()) {
             System.out.println(nota.toString() + "\n");
         }
     }

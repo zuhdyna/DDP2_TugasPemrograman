@@ -124,23 +124,17 @@ public class LoginGUI extends JPanel {
         // mendapatkan password
         String password = String.valueOf(passwordField.getPassword());
         String id = idTextField.getText();
-        // // cek kekosongan field
-        // if (idTextField.getText().equals("") || password.equals("")) {
-        //     JOptionPane.showMessageDialog(this, "Semua field diatas wajib diisi!");
-        //     return;
-        // }
-        // SystemCLI systemCLI = loginManager.getSystem(idTextField.getText());
-        // // cek keberadaan id
-        // if (systemCLI == null) {
-        //     JOptionPane.showMessageDialog(this, "ID atau password invalid");
-        //     return;
-        // }
-        // // kalo bener, login tergantung jenis system CLI
-        // if (systemCLI instanceof EmployeeSystem) {
-        //     MainFrame.getInstance().navigateTo(EmployeeSystemGUI.KEY);
-        // } else if (systemCLI instanceof MemberSystem) {
-        //     MainFrame.getInstance().navigateTo(MemberSystemGUI.KEY);
-        // }
+        // cek kekosongan field
+        if (id.equals("") || password.equals("")) {
+            JOptionPane.showMessageDialog(this, "Semua field diatas wajib diisi!");
+            return;
+        }
+        // kalo dah keisi, login lewat main frame
+        if (!MainFrame.getInstance().login(id, password)){
+            JOptionPane.showMessageDialog(this, "ID atau password salah!");
+            return;
+        }
+        // MainFrame.getInstance().login(systemCLI, idTextField.getText(), password);
         // flush field
         idTextField.setText("");
         passwordField.setText("");

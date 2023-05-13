@@ -71,7 +71,7 @@ public class Nota {
     public String kerjakan(){
         String message  = String.format("Nota %d : ", id);
         for (LaundryService service:
-             services) {
+            services) {
             if(service.isDone()){
                 continue;
             }
@@ -125,7 +125,7 @@ public class Nota {
         );
         nota.append("\n--- SERVICE LIST ---\n");
         for (LaundryService service:
-             services) {
+            services) {
             nota.append(String.format("-%s @ Rp.%d\n", service.getServiceName(), service.getHarga(berat)));
         }
         nota.append("Harga Akhir: ").append(calculateHarga());

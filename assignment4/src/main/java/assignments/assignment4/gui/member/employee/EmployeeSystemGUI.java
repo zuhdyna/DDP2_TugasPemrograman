@@ -32,6 +32,10 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
     protected JButton[] createButtons() {
         // TODO
         return new JButton[]{
+            // button pertama untuk menampilkan cucicuci
+            new JButton("It's nyuci time"),
+            // button kedua untuk menampilkan display
+            new JButton("Display List Nota")
         };
     }
 
@@ -55,6 +59,18 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void displayNota() {
         // TODO
+        System.out.println("Detail Nota");
+        String notaStr = "";
+        for (Nota nota : loggedInMember.getNotaList()){
+            notaStr += nota.getNotaStatus();
+        }
+        JTextArea notaText = new JTextArea(10,20);
+        JScrollPane scrollPane = new JScrollPane(notaText);
+        notaText.setText(notaStr);
+        notaText.setLineWrap(true);
+        notaText.setWrapStyleWord(true);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        JOptionPane.showMessageDialog(this, scrollPane);
     }
 
     /**
@@ -63,5 +79,16 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void cuci() {
         // TODO
+        String notaStatus = "";
+        for (Nota nota: loggedInMember.getNotaList()){
+            notaStatus += nota.kerjakan();
+        }
+        JTextArea notaText = new JTextArea(10,20);
+        JScrollPane scrollPane = new JScrollPane(notaText);
+        notaText.setText(notaStatus);
+        notaText.setLineWrap(true);
+        notaText.setWrapStyleWord(true);
+        scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
+        JOptionPane.showMessageDialog(this, scrollPane);
     }
 }

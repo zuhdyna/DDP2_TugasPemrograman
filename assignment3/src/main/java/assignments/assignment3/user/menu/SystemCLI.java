@@ -5,9 +5,9 @@ import assignments.assignment3.user.Member;
 import java.util.Scanner;
 
 public abstract class SystemCLI {
-   protected Member[] memberList = new Member[0];
-   protected Member loginMember;
-   protected Scanner in;
+protected Member[] memberList = new Member[0];
+protected Member loginMember;
+protected Scanner in;
 
     public void login(Scanner in, String inputId, String inputPassword){
         Member authMember = authUser(inputId, inputPassword);
@@ -24,6 +24,7 @@ public abstract class SystemCLI {
 
     public Member authUser(String id, String pass) {
         for (Member user : memberList) {
+            System.out.println(user.getId());
             if (!user.getId().equals(id)) {
                 continue;
             }

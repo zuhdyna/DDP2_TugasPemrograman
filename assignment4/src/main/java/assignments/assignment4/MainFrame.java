@@ -101,6 +101,10 @@ public class MainFrame extends JFrame{
         for (Loginable panel:
                 loginablePanel) {
             // TODO
+            if (panel.login(id, password)) {
+                navigateTo(panel.getPageName());
+                return true;
+            }
         }
         return false;
     }

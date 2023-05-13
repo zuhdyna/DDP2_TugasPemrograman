@@ -1,5 +1,6 @@
 package assignments.assignment4.gui.member;
 
+import assignments.assignment3.LoginManager;
 import assignments.assignment3.user.Member;
 import assignments.assignment3.user.menu.SystemCLI;
 import assignments.assignment4.MainFrame;
@@ -43,9 +44,9 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
         JButton[] buttons = createButtons();
         ActionListener[] listeners = createActionListeners();
 
-//        if (buttons.length != listeners.length) {
-//            throw new IllegalStateException("Number of buttons and listeners must be equal.");
-//        }
+        // if (buttons.length != listeners.length) {
+        //     throw new IllegalStateException("Number of buttons and listeners must be equal.");
+        // }
 
         JPanel buttonsPanel = new JPanel(new GridBagLayout());
         GridBagConstraints gbc = new GridBagConstraints();
@@ -89,11 +90,14 @@ public abstract class AbstractMemberGUI extends JPanel implements Loginable{
      * */
     public boolean login(String id, String password) {
         // TODO
-        Member authMember = systemCLI.authUser(id, password);
-        // cek kebenaran password
-        if (authMember == null) {
-            JOptionPane.showMessageDialog(this, "ID atau password invalid");
+        // cek data member
+        loggedInMember = systemCLI.authUser(id, password);
+        if (loggedInMember == null) {
+            return false;
         }
+        // setup label
+        welcomeLabel.setText("Welcome! " + loggedInMember.getNama());
+        loggedInAsLabel.setText("Logged in as " + loggedInMember.getId());
         return true;
     }
 

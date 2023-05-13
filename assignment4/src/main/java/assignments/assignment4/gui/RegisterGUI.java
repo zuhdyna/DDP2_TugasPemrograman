@@ -147,5 +147,9 @@ public class RegisterGUI extends JPanel {
             JOptionPane.showMessageDialog(this, "Berhasil membuat user dengan ID " + registeredMember.getId() + "!");
             MainFrame.getInstance().navigateTo(HomeGUI.KEY);
         }
+        //flush input
+        nameTextField.setText("");
+        phoneTextField.setText("");
+        passwordField.setText("");
     }
 }
