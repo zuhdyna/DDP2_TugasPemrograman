@@ -1,145 +1,42 @@
 package assignments.assignment3.nota;
+
 import assignments.assignment1.NotaGenerator;
+import assignments.assignment3.nota.service.CuciService;
 import assignments.assignment3.nota.service.LaundryService;
 import assignments.assignment3.user.Member;
-// import tanggal
+
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
+
+import static assignments.assignment1.NotaGenerator.toHargaPaket;
+import static assignments.assignment1.NotaGenerator.toHariPaket;
 
 public class Nota {
-    private Member member;
-    private String paket;
+    private final Member member;
+    private final String paket;
     private LaundryService[] services;
-    private long baseHarga;
+    private final long baseHarga;
     private int sisaHariPengerjaan;
-    private  int berat;
-    private int id;
-    private String tanggalMasuk;
+    private final int berat;
+    private final int id;
+    private final String tanggalMasuk;
     private boolean isDone;
     static public int totalNota;
 
     public Nota(Member member, int berat, String paket, String tanggal) {
-        //TODO
-        // assign semua info
+        this.id = totalNota;
+        this.paket = paket;
         this.member = member;
         this.berat = berat;
-        this.paket = paket;
-        this.tanggalMasuk = tanggal;
-        this.id = totalNota;
+        this.baseHarga = toHargaPaket(paket);
+        this.sisaHariPengerjaan = toHariPaket(paket);
+        this.services = new LaundryService[]{new CuciService()};
+        isDone = false;
         totalNota++;
-        // assign baseHarga, sisaHariPengerjaan, dan isDone sesuai paket
-        if (paket.toLowerCase().equals("express")){
-            this.baseHarga = 12000*berat;
-            this.sisaHariPengerjaan = 1;
-            this.isDone = false;
-        } else if (paket.toLowerCase().equals("fast")){
-            this.baseHarga = 10000*berat;
-            this.sisaHariPengerjaan = 2;
-            this.isDone = false;
-        } else if (paket.toLowerCase().equals("reguler")){
-            this.baseHarga = 7000*berat;
-            this.sisaHariPengerjaan = 3;
-            this.isDone = false;
-        }
-        // assign services
-        this.services = new LaundryService[0];
-        // tambahkan cuciService
-        this.addService(new assignments.assignment3.nota.service.CuciService());
+        tanggalMasuk = tanggal;
     }
-
-    public void addService(LaundryService service){
-        //TODO
-        // membuat array baru dengan panjang array lama + 1
-        LaundryService[] newServiceList = new LaundryService[services.length + 1];
-        // menyalin semua isi array lama ke array baru
-        for(int i = 0; i < services.length; i++){
-            newServiceList[i] = services[i];
-        }
-        // menambahkan service baru ke array baru
-        newServiceList[services.length] = service;
-        // mengganti array lama dengan array baru
-        services = newServiceList;
-    }
-
-    public String kerjakan(){
-        // TODO
-        // iterasi setiap service
-        if (!isDone){
-            for (int i = 0; i < services.length; i++) {
-                // jika service belum selesai, kerjakan
-                if(!services[i].isDone()){
-                    // jika service terakhir, isDone = true
-                    if( i == services.length-1){
-                        isDone = true;
-                    }
-                    return "Nota "+ this.id + " : " +services[i].doWork();
-                }
-            }
-        } else {
-            return "Nota "+ this.id + " : " + "Sudah selesai.";
-        }
-        return "";
-    }
-    public void toNextDay() {
-        // TODO
-        // jika belum selesai atau sisa hari pengerjaan > 0, kurangi sisa hari pengerjaan
-        if (!isDone == true || sisaHariPengerjaan > 0){
-            this.sisaHariPengerjaan--;
-        }
-    }
-
-    public long calculateHarga(){
-        // TODO
-        // iterasi setiap service
-        long totalHarga = 0;
-        for (int i = 0; i < services.length; i++) {
-            // tambahkan harga setiap service ke totalHarga
-            totalHarga += services[i].getHarga(berat);
-        }
-        // tambahkan baseHarga ke totalHarga
-        totalHarga += this.baseHarga;
-        // menghitung denda
-        if (this.sisaHariPengerjaan < 0){
-            totalHarga += 2000*(this.sisaHariPengerjaan);
-        }
-        // harga tidak boleh minus
-        if (totalHarga < 0){
-            totalHarga = 0;
-        }
-        return totalHarga;
-    }
-
-    public String getNotaStatus(){
-        // TODO
-        // jika isDone == true, return "Sudah selesai"
-        // jika isDone == false, return "Belum selesai"
-        if (isDone){
-            return "Nota "+ this.id + " : " + "Sudah selesai.";
-        } else {
-            return "Nota "+ this.id + " : " + "Belum selesai.";
-        }
-    }
-
-    @Override
-    public String toString(){
-        // TODO
-        // string semua data nota
-        String outputNota = String.format("[ID Nota = %d]\n", this.id);
-        outputNota += NotaGenerator.generateNotaVersiTP3(this.member.getId(), this.getPaket(), this.berat, this.tanggalMasuk);
-        // tambahkan services
-        outputNota += "\n--- SERVICE LIST ---";
-        for (int i = 0; i < services.length; i++) {
-            outputNota += "\n-" + services[i].getServiceName() + " @ Rp." + services[i].getHarga(berat);
-        }
-        // tambahkan total harga
-        outputNota += "\nHarga Akhir: " + calculateHarga();
-        // jika terkena kompensasi, tambahkan pesan
-        if (this.sisaHariPengerjaan < 0){
-            outputNota += " Ada kompensasi keterlambatan "+ (-1*this.sisaHariPengerjaan) + " * 2000 hari";
-        }
-        return outputNota;
-    }
-
-    // Dibawah ini adalah getter
 
     public String getPaket() {
         return paket;
@@ -159,8 +56,88 @@ public class Nota {
     public boolean isDone() {
         return isDone;
     }
+    public void addService(LaundryService service){
+        int n = services.length;
+        LaundryService[] newarr = new LaundryService[n + 1];
+        System.arraycopy(services, 0, newarr, 0, n);
+        newarr[n] = service;
+        services = newarr;
+    }
 
     public LaundryService[] getServices(){
         return services;
     }
+
+    public String kerjakan(){
+        String message  = String.format("Nota %d : ", id);
+        for (LaundryService service:
+             services) {
+            if(service.isDone()){
+                continue;
+            }
+            message += service.doWork();
+            if(service == services[services.length-1]){
+                isDone = true;
+            }
+            return message;
+        }
+        return message + "Sudah selesai.";
+    }
+    public void toNextDay() {
+        if(!isDone){
+            sisaHariPengerjaan--;
+        }
+    }
+
+    public long calculateHarga(){
+        long totalHarga = baseHarga * berat;
+        for (LaundryService service:
+             services) {
+            totalHarga += service.getHarga(berat);
+        }
+        if(sisaHariPengerjaan < 0){
+            totalHarga += sisaHariPengerjaan * 2000L;
+        }
+        if(totalHarga < 0){
+            return 0;
+        }
+        return totalHarga;
+    }
+
+    public String getNotaStatus(){
+        String message  = String.format("Nota %d : ", id);
+        if(isDone){
+            return message + "Sudah selesai.";
+        }
+        return message + "Belum selesai.";
+    }
+
+    @Override
+    public String toString(){
+        StringBuilder nota = new StringBuilder(String.format("[ID Nota = %d]\n", id));
+
+        nota.append(NotaGenerator.generateNota(
+                String.valueOf(member.getId()),
+                paket,
+                berat,
+                tanggalMasuk,
+                false)
+        );
+        nota.append("\n--- SERVICE LIST ---\n");
+        for (LaundryService service:
+             services) {
+            nota.append(String.format("-%s @ Rp.%d\n", service.getServiceName(), service.getHarga(berat)));
+        }
+        nota.append("Harga Akhir: ").append(calculateHarga());
+        if(sisaHariPengerjaan < 0){
+            nota.append(String.format(" Ada kompensasi keterlambatan %d * 2000 hari\n", sisaHariPengerjaan * -1));
+        }
+        else {
+            nota.append("\n");
+        }
+
+        return nota.toString();
+    }
+
+
 }

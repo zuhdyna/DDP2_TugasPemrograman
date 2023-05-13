@@ -84,6 +84,7 @@ public class MainFrame extends JFrame{
      * */
     public void navigateTo(String page){
         // TODO
+        cards.show(mainPanel, page);
     }
 
     /**
