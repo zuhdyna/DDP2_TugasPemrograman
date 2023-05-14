@@ -24,7 +24,6 @@ protected Scanner in;
 
     public Member authUser(String id, String pass) {
         for (Member user : memberList) {
-            System.out.println(user.getId());
             if (!user.getId().equals(id)) {
                 continue;
             }

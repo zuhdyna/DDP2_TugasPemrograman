@@ -59,10 +59,9 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void displayNota() {
         // TODO
-        System.out.println("Detail Nota");
         String notaStr = "";
-        for (Nota nota : loggedInMember.getNotaList()){
-            notaStr += nota.getNotaStatus();
+        for (Nota nota : NotaManager.notaList){
+            notaStr += (nota.getNotaStatus() + "\n");
         }
         JTextArea notaText = new JTextArea(10,20);
         JScrollPane scrollPane = new JScrollPane(notaText);
@@ -80,8 +79,8 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
     private void cuci() {
         // TODO
         String notaStatus = "";
-        for (Nota nota: loggedInMember.getNotaList()){
-            notaStatus += nota.kerjakan();
+        for (Nota nota: NotaManager.notaList){
+            notaStatus += (nota.kerjakan()+"\n");
         }
         JTextArea notaText = new JTextArea(10,20);
         JScrollPane scrollPane = new JScrollPane(notaText);

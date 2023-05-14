@@ -63,10 +63,9 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     private void showDetailNota() {
         // TODO
-        System.out.println("Detail Nota");
         String notaStr = "";
         for (Nota nota : loggedInMember.getNotaList()){
-            notaStr += nota.toString();
+            notaStr += (nota.toString()+"\n");
         }
         JTextArea notaText = new JTextArea(10,20);
         JScrollPane scrollPane = new JScrollPane(notaText);
@@ -83,7 +82,6 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     private void createNota() {
         // TODO
-        System.out.println("Create Nota");
         // pergi ke halaman CreateNotaGUI
         MainFrame.getInstance().navigateTo(CreateNotaGUI.KEY);
     }

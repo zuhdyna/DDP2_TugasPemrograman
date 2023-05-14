@@ -1,6 +1,5 @@
 package assignments.assignment4.gui;
 
-import assignments.assignment1.NotaGenerator;
 import assignments.assignment3.LoginManager;
 import assignments.assignment3.user.Member;
 import assignments.assignment4.MainFrame;
@@ -135,7 +134,7 @@ public class RegisterGUI extends JPanel {
             return;
         }
         // cek nomor hape
-        if (NotaGenerator.isNumeric(phoneTextField.getText()) == false) {
+        if (isNumeric(phoneTextField.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Nomor handphone harus berupa angka!");
             return;
         }
@@ -151,5 +150,12 @@ public class RegisterGUI extends JPanel {
         nameTextField.setText("");
         phoneTextField.setText("");
         passwordField.setText("");
+    }
+    public static boolean isNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c))
+                return false;
+        }
+        return true;
     }
 }

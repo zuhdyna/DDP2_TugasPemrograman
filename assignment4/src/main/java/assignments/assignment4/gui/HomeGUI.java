@@ -126,4 +126,12 @@ public class HomeGUI extends JPanel {
         JOptionPane.showMessageDialog(this, "Kamu tidur hari ini zzz....");
         dateLabel.setText("Hari ini: " + NotaManager.fmt.format((cal).getTime()));
     }
+    // method is numeric
+    public static boolean isNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c))
+                return false;
+        }
+        return true;
+    }
 }

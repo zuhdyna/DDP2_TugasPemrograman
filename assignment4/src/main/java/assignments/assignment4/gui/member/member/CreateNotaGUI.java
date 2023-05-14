@@ -1,12 +1,12 @@
 package assignments.assignment4.gui.member.member;
 
-import assignments.assignment1.NotaGenerator;
 import assignments.assignment3.nota.Nota;
 import assignments.assignment3.nota.NotaManager;
 import assignments.assignment3.nota.service.AntarService;
 import assignments.assignment3.nota.service.SetrikaService;
 import assignments.assignment3.user.Member;
 import assignments.assignment4.MainFrame;
+import assignments.assignment4.gui.HomeGUI;
 import assignments.assignment4.gui.member.AbstractMemberGUI;
 
 import javax.swing.*;
@@ -167,7 +167,7 @@ public class CreateNotaGUI extends JPanel {
         boolean antar = antarCheckBox.isSelected();
         // cek input
         if (paket.equals("Express") || paket.equals("Fast") || paket.equals("Reguler")){
-            if (NotaGenerator.isNumeric(beratStr)){
+            if (isNumeric(beratStr)){
                 // buat nota
                 int berat = Integer.parseInt(beratStr);
                 // jika berat kurang dari 2
@@ -183,7 +183,8 @@ public class CreateNotaGUI extends JPanel {
                 if (antar){
                     nota.addService(new AntarService());
                 }
-                // tambahkan nota ke member
+                // tambahkan nota ke member dan notamanager
+                NotaManager.addNota(nota);
                 memberSystemGUI.getLoggedInMember().addNota(nota);
                 // membuat pesan
                 JOptionPane.showMessageDialog(this, "Berhasil membuat nota!");
@@ -213,5 +214,12 @@ public class CreateNotaGUI extends JPanel {
         antarCheckBox.setSelected(false);
         // kembali ke halaman login
         MainFrame.getInstance().navigateTo(memberSystemGUI.getPageName());;
+    }
+    public static boolean isNumeric(String str) {
+        for (char c : str.toCharArray()) {
+            if (!Character.isDigit(c))
+                return false;
+        }
+        return true;
     }
 }
