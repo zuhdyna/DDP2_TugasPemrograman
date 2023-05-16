@@ -78,7 +78,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void cuci() {
         // TODO
-        String notaStatus = "";
+        String notaStatus = "Stand back! " + loggedInMember.getNama() + " beginning to nyuci!\n";
         for (Nota nota: NotaManager.notaList){
             notaStatus += (nota.kerjakan()+"\n");
         }
