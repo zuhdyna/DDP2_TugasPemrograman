@@ -21,6 +21,8 @@ public class RegisterGUI extends JPanel {
     private JButton registerButton;
     private LoginManager loginManager;
     private JButton backButton;
+    // checkbox show password
+    private JCheckBox showPassword;
 
     public RegisterGUI(LoginManager loginManager) {
         super(new BorderLayout()); // Setup layout, Feel free to make any changes
@@ -69,6 +71,18 @@ public class RegisterGUI extends JPanel {
                 handleBack();
             }
         });
+        // membuat checkbox show password
+        showPassword = new JCheckBox("Show Password");
+        showPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                if (showPassword.isSelected()) {
+                    passwordField.setEchoChar((char) 0);
+                } else {
+                    passwordField.setEchoChar('•');
+                }
+            }
+        });
         // meletakkan label dan textfield
         gbcons.gridx = 0;
         gbcons.gridy = 0;
@@ -96,7 +110,11 @@ public class RegisterGUI extends JPanel {
         gbcons.gridx = 0;
         gbcons.gridy = 5;
         gbcons.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(passwordField, gbcons);
+        // panel untuk passwordField dan showPassword
+        JPanel passwordPanel = new JPanel(new BorderLayout());
+        passwordPanel.add(passwordField, BorderLayout.CENTER);
+        passwordPanel.add(showPassword, BorderLayout.EAST);
+        mainPanel.add(passwordPanel, gbcons);
         // membuat button
         gbcons.fill = GridBagConstraints.NONE;
         gbcons.gridx = 0;
@@ -121,6 +139,9 @@ public class RegisterGUI extends JPanel {
         nameTextField.setText("");
         phoneTextField.setText("");
         passwordField.setText("");
+        // show password jadi false
+        showPassword.setSelected(false);
+        passwordField.setEchoChar('•');
         MainFrame.getInstance().logout();
     }
 
@@ -153,6 +174,9 @@ public class RegisterGUI extends JPanel {
         nameTextField.setText("");
         phoneTextField.setText("");
         passwordField.setText("");
+        // show password jadi false
+        showPassword.setSelected(false);
+        passwordField.setEchoChar('•');
     }
     public static boolean isNumeric(String str) {
         for (char c : str.toCharArray()) {

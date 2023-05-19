@@ -27,6 +27,8 @@ public class LoginGUI extends JPanel {
     private JButton loginButton;
     private JButton backButton;
     private LoginManager loginManager;
+    // checkbox show password
+    private JCheckBox showPassword;
 
     public LoginGUI(LoginManager loginManager) {
         super(new BorderLayout()); // Setup layout, Feel free to make any changes
@@ -73,6 +75,18 @@ public class LoginGUI extends JPanel {
                 handleBack();
             }
         });
+        // membuat checkbox show password
+        showPassword = new JCheckBox("Show Password");
+        showPassword.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e){
+                if (showPassword.isSelected()){
+                    passwordField.setEchoChar((char)0);
+                } else {
+                    passwordField.setEchoChar('•');
+                }
+            }
+        });
         // meletakkan label dan textfield
         gbcons.gridx = 0;
         gbcons.gridy = 0;
@@ -91,7 +105,11 @@ public class LoginGUI extends JPanel {
         gbcons.gridx = 0;
         gbcons.gridy = 3;
         gbcons.fill = GridBagConstraints.HORIZONTAL;
-        mainPanel.add(passwordField, gbcons);
+        // membuat panel baru untuk passwordField dan showPassword
+        JPanel passwordPanel = new JPanel(new BorderLayout());
+        passwordPanel.add(passwordField, BorderLayout.CENTER);
+        passwordPanel.add(showPassword, BorderLayout.EAST);
+        mainPanel.add(passwordPanel, gbcons);
         // meletakkan button
         gbcons.fill = GridBagConstraints.NONE;
         gbcons.gridx = 0;
@@ -115,6 +133,10 @@ public class LoginGUI extends JPanel {
         // balikin jadi kosong semua
         idTextField.setText("");
         passwordField.setText("");
+        // show password di set ke false
+        showPassword.setSelected(false);
+        passwordField.setEchoChar('•');
+        // balik ke home
         MainFrame.getInstance().logout();
     }
 
@@ -140,5 +162,8 @@ public class LoginGUI extends JPanel {
         // flush field
         idTextField.setText("");
         passwordField.setText("");
+        // show password di set ke false
+        showPassword.setSelected(false);
+        passwordField.setEchoChar('•');
     }
 }
