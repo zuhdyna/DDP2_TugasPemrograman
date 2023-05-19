@@ -63,13 +63,17 @@ public class MemberSystemGUI extends AbstractMemberGUI {
      * */
     private void showDetailNota() {
         // TODO
+        // cek apakah loggedInMember memiliki nota
+        if (loggedInMember.getNotaList().length == 0){
+            JOptionPane.showMessageDialog(this, "Anda belum pernah mencuci");
+            return;
+        }
         String notaStr = "";
         for (Nota nota : loggedInMember.getNotaList()){
             notaStr += (nota.toString()+"\n");
         }
-        JTextArea notaText = new JTextArea(10,20);
+        JTextArea notaText = new JTextArea(notaStr,10,20);
         JScrollPane scrollPane = new JScrollPane(notaText);
-        notaText.setText(notaStr);
         notaText.setLineWrap(true);
         notaText.setWrapStyleWord(true);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
