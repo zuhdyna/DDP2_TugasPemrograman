@@ -196,6 +196,7 @@ public class CreateNotaGUI extends JPanel {
                 antarCheckBox.setSelected(false);
             } else {
                 JOptionPane.showMessageDialog(this, "Berat harus berupa angka", "Error", JOptionPane.ERROR_MESSAGE);
+                beratTextField.setText("");
             }
         } else {
             JOptionPane.showMessageDialog(this, "Semuanya harus diisi", "Error", JOptionPane.ERROR_MESSAGE);

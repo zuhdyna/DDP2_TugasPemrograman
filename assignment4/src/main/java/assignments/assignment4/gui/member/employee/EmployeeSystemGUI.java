@@ -61,7 +61,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
         // TODO
         // jika tidak ada nota yang perlu dicuci
         if (NotaManager.notaList.length == 0){
-            JOptionPane.showMessageDialog(this, "Tidak ada nota yang perlu dicuci");
+            JOptionPane.showMessageDialog(this, "Belum ada nota", "Display Nota Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         // mengumpulkan semua status nota yang ada pada sistem
@@ -84,13 +84,15 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void cuci() {
         // TODO
+        // pesan beginning
+        JOptionPane.showMessageDialog(this, "Stand back! " + loggedInMember.getNama() + " beginning to nyuci!");
         // jika tidak ada nota yang perlu dicuci
         if (NotaManager.notaList.length == 0){
-            JOptionPane.showMessageDialog(this, "Tidak ada nota yang perlu dicuci");
+            JOptionPane.showMessageDialog(this, "Tidak ada nota yang perlu dicuci", "Cuci Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         // mengumpulkan semua status nota yang ada pada sistem
-        String notaStatus = "Stand back! " + loggedInMember.getNama() + " beginning to nyuci!\n";
+        String notaStatus = "";
         for (Nota nota: NotaManager.notaList){
             notaStatus += (nota.kerjakan()+"\n");
         }

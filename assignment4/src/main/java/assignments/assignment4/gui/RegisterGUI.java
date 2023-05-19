@@ -160,6 +160,7 @@ public class RegisterGUI extends JPanel {
         // cek nomor hape
         if (isNumeric(phoneTextField.getText()) == false) {
             JOptionPane.showMessageDialog(this, "Nomor handphone harus berupa angka!");
+            phoneTextField.setText("");
             return;
         }
         // add member, jika belum ada ID terkait

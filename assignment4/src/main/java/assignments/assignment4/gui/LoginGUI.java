@@ -154,9 +154,10 @@ public class LoginGUI extends JPanel {
             JOptionPane.showMessageDialog(this, "Semua field diatas wajib diisi!");
             return;
         }
-        // kalo dah keisi, login lewat main frame. Jika return false, artinya salah
+        // kalo dah keisi, login lewat main frame. Jika return false, artinya salah dan di main-nya ga login
         if (!MainFrame.getInstance().login(id, password)){
-            JOptionPane.showMessageDialog(this, "ID atau password salah!");
+            // assume : ga dikosongin meski salah, agar user cukup perbaiki mana yang salah tanpa tulis ulang
+            JOptionPane.showMessageDialog(this, "ID atau password salah!", "ID or Password Error", JOptionPane.ERROR_MESSAGE);
             return;
         }
         // flush field
