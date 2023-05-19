@@ -59,13 +59,16 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void displayNota() {
         // TODO
+        if (NotaManager.notaList.length == 0){
+            JOptionPane.showMessageDialog(this, "Tidak ada nota yang perlu dicuci");
+            return;
+        }
         String notaStr = "";
         for (Nota nota : NotaManager.notaList){
             notaStr += (nota.getNotaStatus() + "\n");
         }
-        JTextArea notaText = new JTextArea(10,20);
+        JTextArea notaText = new JTextArea(notaStr,10,20);
         JScrollPane scrollPane = new JScrollPane(notaText);
-        notaText.setText(notaStr);
         notaText.setLineWrap(true);
         notaText.setWrapStyleWord(true);
         scrollPane.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_ALWAYS);
@@ -78,6 +81,11 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void cuci() {
         // TODO
+        // jika tidak ada nota yang perlu dicuci
+        if (NotaManager.notaList.length == 0){
+            JOptionPane.showMessageDialog(this, "Tidak ada nota yang perlu dicuci");
+            return;
+        }
         String notaStatus = "Stand back! " + loggedInMember.getNama() + " beginning to nyuci!\n";
         for (Nota nota: NotaManager.notaList){
             notaStatus += (nota.kerjakan()+"\n");
