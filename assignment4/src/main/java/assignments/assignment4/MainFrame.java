@@ -101,6 +101,7 @@ public class MainFrame extends JFrame{
         for (Loginable panel:
                 loginablePanel) {
             // TODO
+            // jika id dan password sesuai dengan yang ada di sistem, maka akan menampilkan halaman yang sesuai
             if (panel.login(id, password)) {
                 navigateTo(panel.getPageName());
                 return true;
