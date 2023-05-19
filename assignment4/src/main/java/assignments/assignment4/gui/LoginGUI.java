@@ -48,14 +48,17 @@ public class LoginGUI extends JPanel {
      * */
     private void initGUI() {
         // TODO
+        // constraint untuk setiap komponen yang akan ditambahkan ke mainPanel
         GridBagConstraints gbcons = new GridBagConstraints();
         gbcons.fill = GridBagConstraints.NONE;
         gbcons.weightx = 1;
         gbcons.weighty = 1;
+        // membuat label dan textfield
         idLabel = new JLabel("Masukkan ID Anda:");
         idTextField = new JTextField();
         passwordLabel = new JLabel("Masukkan Password Anda:");
         passwordField = new JPasswordField();
+        // membuat button-button
         loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener() {
             @Override
@@ -70,7 +73,7 @@ public class LoginGUI extends JPanel {
                 handleBack();
             }
         });
-        // membuat label dan textfield
+        // meletakkan label dan textfield
         gbcons.gridx = 0;
         gbcons.gridy = 0;
         gbcons.gridwidth = 2;
@@ -89,7 +92,7 @@ public class LoginGUI extends JPanel {
         gbcons.gridy = 3;
         gbcons.fill = GridBagConstraints.HORIZONTAL;
         mainPanel.add(passwordField, gbcons);
-        // membuat button
+        // meletakkan button
         gbcons.fill = GridBagConstraints.NONE;
         gbcons.gridx = 0;
         gbcons.gridy = 4;

@@ -59,14 +59,17 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
      * */
     private void displayNota() {
         // TODO
+        // jika tidak ada nota yang perlu dicuci
         if (NotaManager.notaList.length == 0){
             JOptionPane.showMessageDialog(this, "Tidak ada nota yang perlu dicuci");
             return;
         }
+        // mengumpulkan semua status nota yang ada pada sistem
         String notaStr = "";
         for (Nota nota : NotaManager.notaList){
             notaStr += (nota.getNotaStatus() + "\n");
         }
+        // menampilkan semua status nota yang ada pada sistem
         JTextArea notaText = new JTextArea(notaStr,10,20);
         JScrollPane scrollPane = new JScrollPane(notaText);
         notaText.setLineWrap(true);
@@ -86,6 +89,7 @@ public class EmployeeSystemGUI extends AbstractMemberGUI {
             JOptionPane.showMessageDialog(this, "Tidak ada nota yang perlu dicuci");
             return;
         }
+        // mengumpulkan semua status nota yang ada pada sistem
         String notaStatus = "Stand back! " + loggedInMember.getNama() + " beginning to nyuci!\n";
         for (Nota nota: NotaManager.notaList){
             notaStatus += (nota.kerjakan()+"\n");

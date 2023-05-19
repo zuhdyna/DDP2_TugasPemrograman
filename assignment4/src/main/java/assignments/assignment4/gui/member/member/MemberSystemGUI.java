@@ -68,10 +68,12 @@ public class MemberSystemGUI extends AbstractMemberGUI {
             JOptionPane.showMessageDialog(this, "Anda belum pernah mencuci");
             return;
         }
+        // mengumpulkan data nota
         String notaStr = "";
         for (Nota nota : loggedInMember.getNotaList()){
             notaStr += (nota.toString()+"\n");
         }
+        // menampilkan data nota
         JTextArea notaText = new JTextArea(notaStr,10,20);
         JScrollPane scrollPane = new JScrollPane(notaText);
         notaText.setLineWrap(true);

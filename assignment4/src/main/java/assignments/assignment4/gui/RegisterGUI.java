@@ -42,16 +42,19 @@ public class RegisterGUI extends JPanel {
      * */
     private void initGUI() {
         // TODO
+        // constraint untuk setiap komponen yang akan ditambahkan ke mainPanel
         GridBagConstraints gbcons = new GridBagConstraints();
         gbcons.fill = GridBagConstraints.NONE;
         gbcons.weightx = 1;
         gbcons.weighty = 1;
+        // membuat label dan textfield
         nameLabel = new JLabel("Masukkan nama Anda:");
         nameTextField = new JTextField();
         phoneLabel = new JLabel("Masukkan nomor handphone Anda:");
         phoneTextField = new JTextField();
         passwordLabel = new JLabel("Masukkan Password Anda:");
         passwordField = new JPasswordField();
+        // membuat button-button
         registerButton = new JButton("Register");
         registerButton.addActionListener(new ActionListener() {
             @Override
@@ -66,7 +69,7 @@ public class RegisterGUI extends JPanel {
                 handleBack();
             }
         });
-        // membuat label dan textfield
+        // meletakkan label dan textfield
         gbcons.gridx = 0;
         gbcons.gridy = 0;
         gbcons.gridwidth = 2;

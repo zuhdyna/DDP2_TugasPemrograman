@@ -46,7 +46,7 @@ public class HomeGUI extends JPanel {
         // membuat titleLabel
         titleLabel = new JLabel("Selamat datang di CuciCuci System!");
         titleLabel.setFont(new Font("Arial", Font.BOLD, 20));
-        // memmbuat 3 button
+        // membuat button
         loginButton = new JButton("Login");
         loginButton.addActionListener(new ActionListener() {
             @Override

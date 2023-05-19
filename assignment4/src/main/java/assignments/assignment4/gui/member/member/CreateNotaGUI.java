@@ -67,6 +67,7 @@ public class CreateNotaGUI extends JPanel {
         paketLabel = new JLabel("Paket Laundry:");
         // setup combobox
         paketComboBox = new JComboBox<>(new String[]{"Express", "Fast", "Reguler"});
+        // setup button
         showPaketButton = new JButton("Show Paket");
         showPaketButton.addActionListener(new ActionListener() {
             @Override
