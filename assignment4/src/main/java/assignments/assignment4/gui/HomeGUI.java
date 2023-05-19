@@ -121,7 +121,8 @@ public class HomeGUI extends JPanel {
      * Akan dipanggil jika pengguna menekan "toNextDayButton"
      * */
     private void handleNextDay() {
-        toNextDay();
+        // Next day notamanager
+        NotaManager.toNextDay();
         // memberi pesan
         JOptionPane.showMessageDialog(this, "Kamu tidur hari ini zzz....");
         dateLabel.setText("Hari ini: " + NotaManager.fmt.format((cal).getTime()));

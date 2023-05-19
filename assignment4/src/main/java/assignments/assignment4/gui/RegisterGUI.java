@@ -141,7 +141,7 @@ public class RegisterGUI extends JPanel {
         // add member, jika belum ada ID terkait
         Member registeredMember = loginManager.register(nameTextField.getText(), phoneTextField.getText(), enteredPassword);
         if (registeredMember == null) {
-            JOptionPane.showMessageDialog(this, "Registrasi gagal! Silahkan coba lagi.");
+            JOptionPane.showMessageDialog(this, "User dengan nama "+ nameTextField.getText() +" dan nomor hp "+ phoneTextField.getText() +" sudah ada!");
         } else {
             JOptionPane.showMessageDialog(this, "Berhasil membuat user dengan ID " + registeredMember.getId() + "!");
             MainFrame.getInstance().navigateTo(HomeGUI.KEY);
